@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>CSS 基础 - 札记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="札记"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="札记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="CSS 基础知识及常用拓展"><meta property="og:type" content="blog"><meta property="og:title" content="CSS 基础"><meta property="og:url" content="https://hashencode.github.io/bitebyte.github.io/post/58d5387c/"><meta property="og:site_name" content="札记"><meta property="og:description" content="CSS 基础知识及常用拓展"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hashencode.github.io/img/og_image.png"><meta property="article:published_time" content="2020-12-10T01:22:48.000Z"><meta property="article:modified_time" content="2023-08-23T02:45:19.265Z"><meta property="article:author" content="BiteByte"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hashencode.github.io/bitebyte.github.io/post/58d5387c/"},"headline":"札记","image":["https://hashencode.github.io/img/og_image.png"],"datePublished":"2020-12-10T01:22:48.000Z","dateModified":"2023-08-23T02:45:19.265Z","author":{"@type":"Person","name":"BiteByte"},"description":"CSS 基础知识及常用拓展"}</script><link rel="canonical" href="https://hashencode.github.io/bitebyte.github.io/post/58d5387c/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><meta name="google-site-verification" content="T7vkvAk0P1q3aljSms1CTcjEuusgc5fuZEXlVpqula4"><meta name="baidu-site-verification" content="code-yaxwed26ig"><meta name="sogou_site_verification" content="Zp4ZwuNJV3"><meta name="shenma-site-verification" content="dca2d80f9ad6bebcae0687cb36a512b8_1607603572"><meta name="360-site-verification" content="e4450cfd468cc5740855ff0297018c33"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand "><a class="navbar-item navbar-logo" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">CSS 基础</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-12-10T01:22:48.000Z" title="2020-12-10T01:22:48.000Z">2020-12-10</time>发表</span><span class="level-item"><time dateTime="2023-08-23T02:45:19.265Z" title="2023-08-23T02:45:19.265Z">2023-08-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/CSS/">CSS</a></span><span class="level-item">21 分钟读完 (大约3151个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>CSS 基础知识及常用拓展</p>
+<span id="more"></span>
+
+<h2 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h2><table>
+<thead>
+<tr>
+<th>标识案例</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>通用选择器<div style="width:8rem" /></td>
+<td>选择所有元素</td>
+</tr>
+<tr>
+<td>p</td>
+<td>元素选择器</td>
+<td>按照给定的节点名称，选择所有匹配的元素</td>
+</tr>
+<tr>
+<td>.hello</td>
+<td>类选择器</td>
+<td>按照给定的类名，选择所有匹配的元素</td>
+</tr>
+<tr>
+<td>#world</td>
+<td>ID选择器</td>
+<td>按照给定的ID，选择唯一匹配的元素</td>
+</tr>
+<tr>
+<td>[attr=value]</td>
+<td>属性选择器</td>
+<td>按照给定的属性，选择所有匹配的元素，匹配规则在下面</td>
+</tr>
+<tr>
+<td>div,span</td>
+<td>选择器列表</td>
+<td>使用<code>,</code>将不同组合器组合在一起，选择能被列表中的任意一个选择器选中的节点</td>
+</tr>
+<tr>
+<td>div span</td>
+<td>后代选择器</td>
+<td>使用空格选择前一个元素的后代节点</td>
+</tr>
+<tr>
+<td>div&gt;span</td>
+<td>直接后代选择器</td>
+<td>使用<code>&gt;</code>选择前一个元素的直接子代的节点</td>
+</tr>
+<tr>
+<td>div~span</td>
+<td>一般兄弟选择器</td>
+<td>使用<code>~</code>选择兄弟元素，后一个节点在前一个节点<strong>后面的</strong>任意位置，且共享同一个父节点，例如 div~span 匹配同一个父元素下，<code>&lt;div&gt;</code>元素后的所有<code>&lt;span&gt;</code>元素</td>
+</tr>
+<tr>
+<td>div+span</td>
+<td>相邻兄弟选择器</td>
+<td>使用<code>+</code>选择该节点之后的兄弟元素，后一个节点紧跟前一个节点，并且共享同一个父节点</td>
+</tr>
+</tbody></table>
+<p>属性选择器提供了多种语法来实现复杂匹配：</p>
+<ul>
+<li><p>[attr]：标识带有以 attr 命名的属性的元素；</p>
+</li>
+<li><p>[attr=value]：标识带有以 attr 命名的属性，且属性值为 value 值的元素；</p>
+</li>
+<li><p>[attr~=value]：标识带有以 attr 命名的属性，且该属性是一个以空格作为分割的值列表，其中至少有一个属性值为 value 值的元素；</p>
+<p>举个例子：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en-us en-gb en-au en-nz<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>这里就可以通过 <code>div[lang~=&quot;en-gb&quot;]</code>来匹配到上面的元素</p>
+</li>
+<li><p>[attr|=value]：标识带有以 attr 命名的属性，且属性值为 <code>value</code> 或者 <code>value-</code> 为前缀的元素；</p>
+<p>举个例子：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en-us en-gb en-au en-nz<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>这里可以通过 <code>div[lang|=&quot;en&quot;]</code>来匹配上面的元素，该匹配规则常用于匹配语言简写。</p>
+</li>
+<li><p>[attr^=value]：标识带有以 attr 命名的属性，且属性值是以 value 值开头的元素；</p>
+</li>
+<li><p>[attr$=value]：标识带有以 attr 命名的属性，且属性值是以 value 值结尾的元素；</p>
+</li>
+<li><p>[attr*=value]：标识带有以 attr 命名的属性，且属性值至少包含一个 value 值的元素；</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nononoen<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>使用<code>[lang*=&quot;en&quot;]</code>能够匹配到上面的元素</p>
+</li>
+<li><p>[attr <em>operator</em> value i]：operator 为上述的匹配表达式，在 value 后添加 i 标识符就能够忽略值的大小写；</p>
+<p>举个例子：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ABC<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>使用<code>[lang=&quot;abc&quot; i]</code>能够匹配到上面的元素</p>
+</li>
+</ul>
+<h2 id="CSS-优先级"><a href="#CSS-优先级" class="headerlink" title="CSS 优先级"></a>CSS 优先级</h2><p>浏览器根据 CSS 的优先级来决定给元素应用哪个样式</p>
+<p>选择器的优先级从高到低：!important &gt;内联样式 &gt; ID选择器 &gt;【类选择器、属性选择器、伪类、伪元素】&gt; 元素选择器 &gt; 通用选择器</p>
+<p>对于多选择器的情况，就需要计算其权重来决定应用哪个样式</p>
+<p>样式的权重 = 内联样式 * 1000 + ID选择器的数量 * 100 + 类选择器的数量 * 10 + 元素选择器的数量 * 1</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">a</span><span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> red <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* 权重 10 */</span>
+<span class="token selector"><span class="token id">#box</span> a</span><span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> green <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">/* 权重 110 */</span>
+</code></pre>
+<p><strong>需要注意的是</strong>：</p>
+<ul>
+<li><p>优先级无法通过权重升位，例如：1个ID选择器与20个类选择器组成的集合作比较，此时类选择器的权重是 200 高于ID选择器，但是样式仍然由 ID 选择器决定，低优先级的选择器始终无法覆盖高优先级的选择器。</p>
+</li>
+<li><p>如果当计算出的权重相等时，后面的样式会覆盖前面的样式。</p>
+</li>
+<li><p>!important 拥有最高优先级，如果要覆盖其样式，可以使用更高优先级的选择器。</p>
+</li>
+</ul>
+<h2 id="百分比参照物"><a href="#百分比参照物" class="headerlink" title="百分比参照物"></a>百分比参照物</h2><p>在CSS中使用百分比首先需要知道百分比相对于谁，这里罗列了一些常见的CSS样式：</p>
+<ul>
+<li><p><strong>相对于父级的宽的属性：</strong></p>
+<p><code>width</code>、<code>min-width</code>、<code>max-width</code>、<code>left</code>、<code>right</code>、<code>text-indent</code>、<code>margin</code>、<code>padding</code></p>
+<p>需要注意的是：这里的宽是指 content-area，并不包含 padding / margin / border，即使父元素设置了 box-sizing : border-box。</p>
+</li>
+<li><p><strong>相对于父级的高的属性：</strong></p>
+<p><code>height</code>、<code>min-height</code>、<code>max-height</code>、<code>top</code>、<code>bottom</code></p>
+</li>
+<li><p><strong>相对于自身宽高的属性：</strong></p>
+<p><code>border-radius</code>、<code>background-size</code>、<code>transform</code>、<code>transform-origin</code>、<code>zoom </code>、<code>clip-path</code></p>
+</li>
+<li><p><strong>相对于自身字号：</strong></p>
+<p><code>line-height</code></p>
+</li>
+</ul>
+<h2 id="Flex-计算方式"><a href="#Flex-计算方式" class="headerlink" title="Flex 计算方式"></a>Flex 计算方式</h2><h3 id="flex-grow-计算方式"><a href="#flex-grow-计算方式" class="headerlink" title="flex-grow 计算方式"></a>flex-grow 计算方式</h3><p>假设有三个元素 width 属性值分别为：100、150、100，各自的 flex-grow 值为 1、2、3，父元素的宽度为 500，此时三个元素的实际宽度时多少？</p>
+<p>flex-grow 是在原有的宽度基础之上分配多余的空间，父元素多余的空间是 500-(100+150+100) = 150，然后 150 被等分成 6 份，添加到各自的元素上，所以最后三个元素的增加的宽度分别为：</p>
+<p>(1/6) x 150 = 25;<br>(2/6) x 150 = 50;<br>(3/6) x 150 = 75;</p>
+<p>但如果三个 flex-grow 的值之和小于 1 呢？例如 flex-grow 的值分别为 0.1、0.2、0.3，那么多余的空间不会被全部分配到三个元素上，三个元素的宽度分别为：</p>
+<p>150 x 0.1 = 15；<br>150 x 0.2 = 30；<br>150 x 0.3 = 45；</p>
+<h3 id="flex-shrink-计算方式"><a href="#flex-shrink-计算方式" class="headerlink" title="flex-shrink 计算方式"></a>flex-shrink 计算方式</h3><p>flex-shrink 默认值为 1，每个元素的收缩权重是其 flex-shrink 的值乘以其宽度。</p>
+<p>假设有三个元素 width 属性值分别为：150、200、300，各自的 flex-shrink 值为 1、2、3，父元素的宽度为 500，需要被收缩的宽度为 150，按照上面的计算方式，得出三个元素的总权重为：</p>
+<p>150 x 1 + 200 x 2 + 300 x 3 = 1450</p>
+<p>每个元素被收缩的宽度为：</p>
+<p>150 x (150 x 1 / 1450) = 15.5<br>150 x (200 x 2 / 1450) = 41.4<br>150 x (300 x 3 / 1450) = 93.1</p>
+<p>如果三个 flex-shrink 的值之和小于 1，例如各自的 flex-shrink 值为 0.1、0.2、0.3，第一步还是计算总权重，得出 145，因为 flex-shrink 的值之和小于 1，所以多出的 150 宽度并不会被全部收缩，只会收缩一部分：150 * (0.1+0.2+0.3) = 90，那么三个元素被收缩宽度分别为：</p>
+<p>90 x (150 x 0.1 / 145) = 9.3<br>90 x (200 x 0.2 / 145) = 24.8<br>90 x (300 x 0.3 / 145) = 55.8</p>
+<h2 id="怪异盒模型"><a href="#怪异盒模型" class="headerlink" title="怪异盒模型"></a>怪异盒模型</h2><p>怪异盒模型：IE5/6将内边距和边框计入宽度和高度，我们称之为怪异盒模型；</p>
+<p>标准盒模型：width 和 height 指的是内容区域（content-area）的宽度和高度。增加内边距、边框和外边距不会影响内容区域的尺寸，这是W3C指定的标准模型。</p>
+<p>通过设置 box-sizing 属性，可以将标准盒模型转换为怪异盒模型。</p>
+<h2 id="灰度转换"><a href="#灰度转换" class="headerlink" title="灰度转换"></a>灰度转换</h2><p><code>filter: grayscale(amount)</code> : 对元素进行灰度转换，amount 介于 0 到 1 之间，默认为 0，可用作禁止访问效果。<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter-function/grayscale">MDN</a></p>
+<h2 id="水平-垂直翻转"><a href="#水平-垂直翻转" class="headerlink" title="水平/垂直翻转"></a>水平/垂直翻转</h2><p><code>scaleX(-1)</code>或者<code>scaleY(-1)</code>可以实现基于水平/垂直翻转</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.flipx</span></span><span class="token punctuation">{</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">scaleX</span><span class="token punctuation">(</span>-<span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 水平翻转
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.flipx</span></span><span class="token punctuation">{</span>
+    <span class="token property">transform</span><span class="token punctuation">:</span><span class="token function">scaleY</span><span class="token punctuation">(</span>-<span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // 垂直翻转
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="inline、block、inlineBlock"><a href="#inline、block、inlineBlock" class="headerlink" title="inline、block、inlineBlock"></a>inline、block、inlineBlock</h2><p><strong>inline（行内元素）：</strong></p>
+<ul>
+<li>行内元素不会独占一行，多个相邻行内元素会排列在同一行里，直到一行内排列不下才会换行，其宽度随内容的变化而变化；</li>
+<li>行内元素无视 width 和 height 属性；</li>
+<li>行内元素无视竖直方向的 margin 和 padding 属性，但是水平方向的 margin 或 padding 会生效；</li>
+</ul>
+<p><strong>block（块级元素）：</strong></p>
+<ul>
+<li>块级元素会独占一行，其宽度默认填满父级元素；</li>
+<li>块级元素可设置 width 和 height 属性；</li>
+<li>块级元素水平和竖直方向的 margin 和 padding 属性都会生效；</li>
+</ul>
+<p><strong>inline-block（行内块级元素）：</strong></p>
+<ul>
+<li>除了不会独占一行，其他特性和块级元素保持一致；</li>
+</ul>
+<h2 id="自适应图片的实现"><a href="#自适应图片的实现" class="headerlink" title="自适应图片的实现"></a>自适应图片的实现</h2><h3 id="根据DPR选择"><a href="#根据DPR选择" class="headerlink" title="根据DPR选择"></a>根据DPR选择</h3><p>如果统一使用普通分辨率的图片，在 Retina 屏幕下会显得很模糊；如果统一使用高分辨率的图片，则会增加带宽的压力。所以不同分辨率的屏幕应该使用不同分辨率的图片以达到最好的显示效果，要实现这个效果就需要使用 <code>srcset</code> 属性：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>photo.png<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>photo@2x.png 2x<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+</code></pre>
+<h3 id="根据尺寸选择"><a href="#根据尺寸选择" class="headerlink" title="根据尺寸选择"></a>根据尺寸选择</h3><p>根据DPR选择图片的写法简单，但是容易出错，例如：iphone 和 macbook 的 DPR 都是 2，但是 iphone 只需要 828px 宽度的图片就可以全屏展示，但是 macbook 需要 2880px 宽度的图片才能够实现全屏展示。这时候就需要根据实际需要尺寸选择图片，将 dpr 换做实际宽度：</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/600<span class="token punctuation">"</span></span>
+     <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/600 600w,
+             https://via.placeholder.com/1200 1200w,
+             https://via.placeholder.com/1800 1800w,
+             https://via.placeholder.com/2400 2400w<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span> 
+</code></pre>
+<p>浏览器会根据屏幕的逻辑像素宽度（screen.width）乘以 DPR 得出的结果，选取最佳尺寸的图片，例如屏幕宽度为 1080px，DPR为2，那么计算的结果为 2160，与 2400 最为接近，所以会选取图片 photo2400w。</p>
+<p>不过这种写法只适合全屏图片显示的场景，因为设备宽度是恒定不变的，所以图片不会随着可视宽度的变化而变化。如果要根据视口宽度而不是设备宽度来显示对应图片，那就需要再给 img 标签加上 <code>sizes</code> 属性，sizes 最小单位是由媒体查询语句和对应的图片大小构成的字符串，多个单位用逗号进行分隔</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/600<span class="token punctuation">"</span></span> 
+     <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://via.placeholder.com/600 600w,
+             https://via.placeholder.com/1200 1200w,
+             https://via.placeholder.com/1800 1800w,
+             https://via.placeholder.com/2400 2400w<span class="token punctuation">"</span></span>
+     <span class="token attr-name">sizes</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(max-width: 600px) 300px, (max-width: 1200px) 600px, (max-width: 1800px) 900px, (max-width: 2400px) 1200px, 600px<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span> 
+</code></pre>
+<p>上述的 sizes 属性表示的是：当视口宽度小于 1200px 且大于 600px 时，图片的宽度会被设置成 600px，如果设备的 DPR 为 2，那么计算结果就是 600 * 2 = 1200，就会选择 1200w 对应的图片。</p>
+<p>在实际开发中时，发现如果视口从小到大变化，图片会自适应加载更大的图片，但是从大到小变化时并不会加载更小的图片，这是因为浏览器在拥有更高的分辨率的图片时，就会忽略质量更低的图片</p>
+<h3 id="picture-标签"><a href="#picture-标签" class="headerlink" title="picture 标签"></a>picture 标签</h3><p>上面方法解决了尺寸和 DPR 自适应的问题，但是可读性太差，有没有可读性更好的写法？</p>
+<p>有！<code>&lt;picture/&gt;</code> 标签能将尺寸配置和 DPR 配置分割开来，具有更好的可读性，需要注意的是  picture  标签内只能存在一个<code>&lt;img/&gt;</code>标签。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(min-width: 800px)<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head.jpg, head-2x.jpg 2x<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>(min-width: 450px)<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head-small.jpg, head-small-2x.jpg 2x<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head-fb.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>head-fb-2x.jpg 2x<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>a head carved out of wood<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">></span></span>
+</code></pre>
+<h3 id="背景图片的DPR自适应"><a href="#背景图片的DPR自适应" class="headerlink" title="背景图片的DPR自适应"></a>背景图片的DPR自适应</h3><p>上面提到的图片自适应都是基于<code>&lt;img/&gt;</code>标签的，但很多场景中需要用到背景图片，这时候就可以使用<code>image-set()</code>函数来加载不同版本的图片，需要注意的是，<code>image-set()</code>函数目前只有 Chrome 和 Safari 浏览器进行了兼容。</p>
+<pre class=" language-css"><code class="language-css"><span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">image-set</span><span class="token punctuation">(</span>
+  <span class="token url">url(icon1x.jpg)</span> <span class="token number">1</span>x,
+  <span class="token url">url(icon2x.jpg)</span> <span class="token number">2</span>x  <span class="token comment" spellcheck="true">/*在DPR为2时，会加载图片 icon2x.jpg*/</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h3><p>通过媒体查询中的<code>min-resolution</code>也可以实现高分辨率图片的加载，需要注意的是，<code>min-resolution</code>目前只有 Chrome 、Safari 和 Firefox 浏览器进行了兼容。</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector">@media (min-resolution: 2dppx),
+(-webkit-min-device-pixel-ratio: 2)
+</span><span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* 高分辨率的图片资源 */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="CSS-Modules"><a href="#CSS-Modules" class="headerlink" title="CSS Modules"></a>CSS Modules</h3><p>CSS Modules 是使用构建工具（例如 webpack），实现样式局部作用域的效果，用于避免样式间的污染，举个例子：</p>
+<p>将 CSS 文件引入</p>
+<pre class=" language-html"><code class="language-html">import type from "./type.css";
+
+element.innerHTML = 
+  `<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${type.display}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    This is a heading
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>`;
+</code></pre>
+<p>在 webpack 的配置中打开 css-loader 的 modules 选项</p>
+<pre><code>  module: &#123;
+    rules: [
+      &#123;
+        test: /\.css$/,
+        use: [
+          &#123; loader: &#39;style-loader&#39; &#125;,
+          &#123;
+            loader: &#39;css-loader&#39;,
+            options: &#123;   
+                modules: true
+            &#125;
+          &#125;
+        ]
+      &#125;
+    ]
+  &#125;
+</code></pre>
+<p>构建工具会将以下 CSS 代码和类名进行转换</p>
+<pre class=" language-css"><code class="language-css"><span class="token comment" spellcheck="true">/** type.css **/</span>
+<span class="token selector"><span class="token class">.serif-font</span> </span><span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Georgia, serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">.display</span> </span><span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">35</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>转换后的结果如下，所有的类名都变成了哈希值</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">._3Ukt9LHwDhphmidalfey-S</span> </span><span class="token punctuation">{</span>
+    <span class="token property">font-family</span><span class="token punctuation">:</span> Georgia, serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector"><span class="token class">._3XpLkKvmw0hNfJyl8yU3i4</span> </span><span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> <span class="token number">35</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+&lt;h<span class="token number">1</span> class=<span class="token string">"_3XpLkKvmw0hNfJyl8yU3i4"</span>>
+    This is a heading
+&lt;/h<span class="token number">1</span>>
+</code></pre>
+<p>如果我们需要让类名更可读一些，可以配置 css-loader 的 localIdentName 属性</p>
+<pre><code>&#123; 
+  loader: &quot;css-loader&quot;,
+  options: &#123;
+      modules: true,
+      localIdentName: &#39;[path][name]__[local]--[hash:base64:5]&#39;
+  &#125;
+&#125;
+</code></pre>
+<p>此时生成的就是类似 <code>src-style-index__display-sxU8x</code>的类名。</p>
+<p>如果想让某些样式变成全局样式，不进行类名的转换，可以使用<code>:global()</code></p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token pseudo-class">:global(.serif-font)</span> </span><span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Georgia, serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</div><div class="article-licensing box"><div class="licensing-title"><p>CSS 基础</p><p><a href="https://hashencode.github.io/bitebyte.github.io/post/58d5387c/">https://hashencode.github.io/bitebyte.github.io/post/58d5387c/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BiteByte</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-12-10</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/7d8129ab/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">拓展 - typescript笔记</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/19ff9408/"><span class="level-item">CSS 动画</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="BiteByte"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BiteByte</p><p class="is-size-6 is-block profile-author-title">FED , HangZhou</p></div></div></nav><nav class="level is-mobile" style="margin-bottom: 1.5rem"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title profile-count">52</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title profile-count">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Git</p><a target="_blank" href="https://github.com/hashencode"><i class="fab fa-github" style="font-size: 2rem;color: #363636;line-height: 1"></i></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#CSS选择器"><span class="level-left"><span class="level-item">1</span><span class="level-item">CSS选择器</span></span></a></li><li><a class="level is-mobile" href="#CSS-优先级"><span class="level-left"><span class="level-item">2</span><span class="level-item">CSS 优先级</span></span></a></li><li><a class="level is-mobile" href="#百分比参照物"><span class="level-left"><span class="level-item">3</span><span class="level-item">百分比参照物</span></span></a></li><li><a class="level is-mobile" href="#Flex-计算方式"><span class="level-left"><span class="level-item">4</span><span class="level-item">Flex 计算方式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#flex-grow-计算方式"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">flex-grow 计算方式</span></span></a></li><li><a class="level is-mobile" href="#flex-shrink-计算方式"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">flex-shrink 计算方式</span></span></a></li></ul></li><li><a class="level is-mobile" href="#怪异盒模型"><span class="level-left"><span class="level-item">5</span><span class="level-item">怪异盒模型</span></span></a></li><li><a class="level is-mobile" href="#灰度转换"><span class="level-left"><span class="level-item">6</span><span class="level-item">灰度转换</span></span></a></li><li><a class="level is-mobile" href="#水平-垂直翻转"><span class="level-left"><span class="level-item">7</span><span class="level-item">水平/垂直翻转</span></span></a></li><li><a class="level is-mobile" href="#inline、block、inlineBlock"><span class="level-left"><span class="level-item">8</span><span class="level-item">inline、block、inlineBlock</span></span></a></li><li><a class="level is-mobile" href="#自适应图片的实现"><span class="level-left"><span class="level-item">9</span><span class="level-item">自适应图片的实现</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#根据DPR选择"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">根据DPR选择</span></span></a></li><li><a class="level is-mobile" href="#根据尺寸选择"><span class="level-left"><span class="level-item">9.2</span><span class="level-item">根据尺寸选择</span></span></a></li><li><a class="level is-mobile" href="#picture-标签"><span class="level-left"><span class="level-item">9.3</span><span class="level-item">picture 标签</span></span></a></li><li><a class="level is-mobile" href="#背景图片的DPR自适应"><span class="level-left"><span class="level-item">9.4</span><span class="level-item">背景图片的DPR自适应</span></span></a></li><li><a class="level is-mobile" href="#媒体查询"><span class="level-left"><span class="level-item">9.5</span><span class="level-item">媒体查询</span></span></a></li><li><a class="level is-mobile" href="#CSS-Modules"><span class="level-left"><span class="level-item">9.6</span><span class="level-item">CSS Modules</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CSS/"><span class="level-start"><span class="level-item">CSS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/categories/React/"><span class="level-start"><span class="level-item">React</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%96%87%E7%AB%A0/"><span class="level-start"><span class="level-item">文章</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a><p class="is-size-7"><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span><span style="margin:0 8px;">|</span><a href="https://beian.miit.gov.cn/" target="_blank">备案号: 浙ICP备19032437号-3</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hashencode"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

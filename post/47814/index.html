@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>面试 - 面试题汇总 - 札记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="札记"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="札记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="列举了一些在面试时遇到的有价值的题目"><meta property="og:type" content="blog"><meta property="og:title" content="面试 - 面试题汇总"><meta property="og:url" content="https://hashencode.github.io/bitebyte.github.io/post/47814/"><meta property="og:site_name" content="札记"><meta property="og:description" content="列举了一些在面试时遇到的有价值的题目"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hashencode.github.io/images/125.jpeg"><meta property="og:image" content="https://hashencode.github.io/images/119.png"><meta property="og:image" content="https://hashencode.github.io/images/120.png"><meta property="og:image" content="https://hashencode.github.io/images/121.png"><meta property="og:image" content="https://hashencode.github.io/images/124.jpeg"><meta property="article:published_time" content="2021-04-19T01:22:48.000Z"><meta property="article:modified_time" content="2023-08-23T02:45:19.264Z"><meta property="article:author" content="BiteByte"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/125.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hashencode.github.io/bitebyte.github.io/post/47814/"},"headline":"札记","image":["https://hashencode.github.io/images/119.png","https://hashencode.github.io/images/120.png","https://hashencode.github.io/images/121.png"],"datePublished":"2021-04-19T01:22:48.000Z","dateModified":"2023-08-23T02:45:19.264Z","author":{"@type":"Person","name":"BiteByte"},"description":"列举了一些在面试时遇到的有价值的题目"}</script><link rel="canonical" href="https://hashencode.github.io/bitebyte.github.io/post/47814/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><meta name="google-site-verification" content="T7vkvAk0P1q3aljSms1CTcjEuusgc5fuZEXlVpqula4"><meta name="baidu-site-verification" content="code-yaxwed26ig"><meta name="sogou_site_verification" content="Zp4ZwuNJV3"><meta name="shenma-site-verification" content="dca2d80f9ad6bebcae0687cb36a512b8_1607603572"><meta name="360-site-verification" content="e4450cfd468cc5740855ff0297018c33"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand "><a class="navbar-item navbar-logo" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">面试 - 面试题汇总</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-04-19T01:22:48.000Z" title="2021-04-19T01:22:48.000Z">2021-04-19</time>发表</span><span class="level-item"><time dateTime="2023-08-23T02:45:19.264Z" title="2023-08-23T02:45:19.264Z">2023-08-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E6%96%87%E7%AB%A0/">文章</a></span><span class="level-item">28 分钟读完 (大约4163个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>列举了一些在面试时遇到的有价值的题目</p>
+<span id="more"></span>
+
+<h2 id="JS部分"><a href="#JS部分" class="headerlink" title="JS部分"></a>JS部分</h2><h3 id="原型题"><a href="#原型题" class="headerlink" title="原型题"></a>原型题</h3><p><strong>打印出的值分别是什么？</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> A <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+A<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>n <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+A<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+  n<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  m<span class="token punctuation">:</span> <span class="token number">3</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：因为调用构造函数时会为实例添加一个指向最初原型（prototype）的指针，而非指向构造函数。当构造函数的原型被重写时，原来的原型依旧存在并没有被销毁，所以 b 的原型指针依然指向原来的原型，而重写之后创建的实例的原型指针会指向新的原型。</p>
+<p>答案：1；undefined；2；3</p>
+<p><strong>延展</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> F <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> f <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">F</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+f<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+f<span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+F<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+F<span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：构造函数 F 继承了 Function，所以能调用 Function 上面的 b 方法，又因为 Function 继承了 Object 所以又能调用 Object 上的 a 方法，所以 F.a() 和 F.b() 分别返回 a 和 b。但当使用 new 方法创建实例时，实例 f 的 __proto__ 指向 F 的原型，而不是 F 本身，又因为原型是一个对象，所以原型继承的是 Object 而非 Function，所以实例 f 只能调用 Object上的 a 方法。不能调用 Function 上的 b 方法。</p>
+<p>答案：a；f.b is not a function；a；b</p>
+<p><strong>说出下列代码的打印结果</strong></p>
+<pre class=" language-javascript"><code class="language-javascript">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">;</span>
+Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">;</span>
+Function<span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span>
+</code></pre>
+<p>答案：</p>
+<pre class=" language-javascript"><code class="language-javascript">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//null</span>
+Function<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//Object.prototype</span>
+Object<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//Function.prototype</span>
+Object <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span>
+Function <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span>
+Function<span class="token punctuation">.</span>prototype <span class="token operator">===</span> Function<span class="token punctuation">.</span>__proto__<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//true</span>
+</code></pre>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p><strong>打印出的值分别是什么？</strong></p>
+<pre class=" language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> a <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：var 声明会被提前到它作用域的最前面，但是他分配的值是没有提前的。</p>
+<p>答案：undefined</p>
+<p><strong>延展</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：匿名函数的情况与<code>var</code>一致</p>
+<p>答案：TypeError: a is not a function</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：函数声明提升了函数名和函数体</p>
+<p>答案：hi</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'foo1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'foo2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：函数提升优先级高于变量提升，且变量会互相覆盖</p>
+<p>答案：foo2、foo1、foo1</p>
+<h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><p><strong>“1”+2+”3”+4 = ？</strong></p>
+<p>解释：当其他类型的值与字符串相加时（不论字符串在前还是在后），另一项都会被转义成字符串，相加的结果也必定是字符串，例如：”5” + null = 5null，”5” + undefined = 5undefined。</p>
+<p>答案：1234</p>
+<p><strong>延展：”1” + + “b” = ?</strong></p>
+<p>解释：首先两个加号中间并不是空字符串，可以理解为：”1” + (+ “b”)，字符串b无法转换成数字类型，所以 + “b” = NaN，承接上题 “1” + NaN，NaN会被转换成字符串，所以最后的的结果是 1NaN。</p>
+<p>答案：1NaN</p>
+<p><strong>拓展</strong></p>
+<p><strong>乘法隐性转换原则：</strong></p>
+<p>1、相乘的两个数会先转换成数字类型，只要有一个数是NaN，那么结果就是NaN。</p>
+<ul>
+<li>5 * “5” = 25</li>
+<li>5 * null = 0</li>
+<li>5 * “a” = NaN</li>
+<li>5 * undefined = NaN</li>
+</ul>
+<p>2、如果Infinity与0相乘，结果是NaN。</p>
+<p><strong>除法隐性转换原则:</strong></p>
+<p>与乘法一致，增加了：0 / 0 = NaN</p>
+<ul>
+<li>5 / “5” = 1</li>
+<li>5 / “a” = NaN</li>
+<li>5 / undefined = NaN</li>
+<li>5 / null = Infinity</li>
+<li>5 / 0 = Infinity</li>
+<li>0 / 0 = NaN</li>
+</ul>
+<p><strong>减法隐性转换原则：</strong></p>
+<p>与乘法一致</p>
+<ul>
+<li>5 - “a” = NaN</li>
+<li>5 - undefined = NaN</li>
+<li>5 - null = 5</li>
+<li>5 - “” = 5</li>
+</ul>
+<p><strong>Null 的转换原则：</strong></p>
+<p>null 在一元计算中（除了与字符串相加）都会被转换成数字0。</p>
+<h3 id="数组操作"><a href="#数组操作" class="headerlink" title="数组操作"></a>数组操作</h3><p><strong>打印出的值分别是什么？</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> clothes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'jacket'</span><span class="token punctuation">,</span> <span class="token string">'t-shirt'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+clothes<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>clothes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：如果赋值 length 小于数组的实际 length，则会将数组进行截断，上题 length 设置为 0 时，clothes 的值为 []。</p>
+<p>答案：undefined</p>
+<p><strong>延展</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> clothes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'jacket'</span><span class="token punctuation">,</span> <span class="token string">'t-shirt'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+clothes<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>clothes<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>解释：当 length 大于数组的实际 length 值时，会使用 undefined 进行填充。</p>
+<p>答案：undefined</p>
+<h3 id="for…in-of"><a href="#for…in-of" class="headerlink" title="for…in/of"></a>for…in/of</h3><p><strong>for…in 和 for…of 有什么区别？</strong></p>
+<p>答案：</p>
+<ol>
+<li><p>in 是 ES5 的 API，of 是 ES6 的 API；</p>
+</li>
+<li><p>in 用于循环遍历对象（但也可以用于循环数组，但在循环数组的时候会将原型属性和自身属性也循环出来），of 用于遍历数组（可以配合<code>Object.keys()</code>来循环可迭代对象）；</p>
+<pre class=" language-javascript"><code class="language-javascript">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>objCustom <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> 
+Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>arrCustom <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> iterable <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+iterable<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">in</span> iterable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 0, 1, 2, "foo", "arrCustom", "objCustom"</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token keyword">of</span> iterable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3, 5, 7</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li><p>in 循环出的是 key，of 循环出的是 value；</p>
+</li>
+</ol>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p><strong>定义变量时，有 var 和无 var 的区别</strong></p>
+<ol>
+<li><p>使用 var 去声明全局变量时，才会被挂载到全局对象上；不使用 var 去声明变量时，<strong>不论这个变量在什么位置</strong>，都会被挂载到全局对象上。举个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// Uncaught ReferenceError: a is not defined</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    a <span class="token operator">=</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 10</span>
+</code></pre>
+</li>
+<li><p>用 var 定义的全局变量在挂载到全局对象上后，无法被删除，而无 var 定义的全局变量可以被删除：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// false</span>
+b <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> b<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span>
+</code></pre>
+</li>
+</ol>
+<p><strong>let 和 var 有什么区别？</strong></p>
+<ol>
+<li><p>var 存在着变量提升，而 let 没有，看一道经典的变量提升和函数声明提升的面试题：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">99</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">// 全局变量a</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                   <span class="token comment" spellcheck="true">// f是函数，虽然定义在调用的后面，但是函数声明会提升到作用域的顶部。 </span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">// a=>99,  此时是全局变量的a</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">// 当前的a变量是下面变量a声明提升后，默认值undefined</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">// a => 10</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>aicoder<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 错误：Uncaught ReferenceError ...</span>
+<span class="token keyword">let</span> aicoder <span class="token operator">=</span> <span class="token string">'aicoder.com'</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>var 没有块级作用域，而 let 有；</p>
+</li>
+<li><p>var 可以重复声明，而 let 不能；</p>
+</li>
+<li><p>var 定义的全局变量会写入全局对象，而 let 不会；</p>
+</li>
+</ol>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p><strong>写出下列方法打印出的值</strong></p>
+<pre class=" language-js"><code class="language-js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>JSON<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class=" language-js"><code class="language-js"><span class="token string">"true"</span>
+ Uncaught SyntaxError<span class="token punctuation">:</span> Unexpected token u <span class="token keyword">in</span> JSON at position <span class="token number">0</span>
+<span class="token string">"null"</span>
+</code></pre>
+<p>JSON 在进行转换时，会先调用其内部的<code>ToString</code>方法，boolean、null、undefined 都会被转换成对应的字符串，但是 JSON 仅支持 object、array、string、number、”true”、”false”、”null” 作为其值，所以在转换 undefined 时会报错，而 null 可以正常转换为 “null”</p>
+<h3 id="Js-的内存机制"><a href="#Js-的内存机制" class="headerlink" title="Js 的内存机制"></a>Js 的内存机制</h3><p>在创建字符串/对象的时候系统会自动分配内存，当它们不再被使用的时候进行释放（垃圾回收机制）。</p>
+<p>如何判定对象不再被使用？</p>
+<p>现代浏览器普遍使用的是标记清除算法，将“对象是否可获得”作为判定对象是否被使用的标准。</p>
+<p>那么什么是对象是否可获得呢？</p>
+<p>举个例子，现在定义一个对象：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'lucy'</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此时对象<code>&#123; name: &#39;lucy&#39; &#125;</code>是可以通过指针 foo 来获得的，接下来修改 foo 的值：</p>
+<pre class=" language-javascript"><code class="language-javascript">foo <span class="token operator">=</span> <span class="token keyword">null</span>
+</code></pre>
+<p>那么此时，指针 foo 的指向变了，指向了对象 null，那么此时对象<code>&#123; name: &#39;lucy&#39; &#125;</code>就没有指针再指向它了，那么它也就被判定为无法被获得，会被执行垃圾回收机制。</p>
+<p>由此延伸开来，当两个指针指向同一个对象时：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'lucy'</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">let</span> foo2 <span class="token operator">=</span> foo<span class="token punctuation">;</span>
+foo <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+</code></pre>
+<p>如果将其中指针 foo 移动到 null，foo2 依旧会保持指向原对象，原对象还是能够被获得，不会被回收。</p>
+<h3 id="链式调用"><a href="#链式调用" class="headerlink" title="链式调用"></a>链式调用</h3><p><strong>如何实现类似 .slice() 形式的调用</strong></p>
+<p>假设现在有一个对象 A，需要给他一个 slice2 方法，那么这就相当于是给对象 A 赋予一个 slice2 的属性，但如果要适配所有的对象，那么应该是在 Object 的原型上定义一个公共的属性，如下：</p>
+<pre class=" language-javascript"><code class="language-javascript">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice2 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'call slice2'</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> A <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+A<span class="token punctuation">.</span><span class="token function">slice2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// call slice2</span>
+</code></pre>
+<h3 id="逻辑与-或"><a href="#逻辑与-或" class="headerlink" title="逻辑与/或"></a>逻辑与/或</h3><p><strong>写出下列代码打印出的值</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> undefined<span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">null</span> <span class="token operator">||</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// output: 1 、null、 []、 1</span>
+</code></pre>
+<p>当逻辑运算的操作项都是布尔值的时候，那返回值也是布尔值，当操作项非布尔值时，返回值也可能是非布尔值。</p>
+<ul>
+<li>逻辑与（A &amp;&amp; B）：找到最后一个能被转换成 true 的值</li>
+<li>逻辑或（A || B）：找到第一个能被转换成 true 的值</li>
+</ul>
+<h3 id="BOM和DOM有和区别？"><a href="#BOM和DOM有和区别？" class="headerlink" title="BOM和DOM有和区别？"></a>BOM和DOM有和区别？</h3><p>BOM（Browser Object Model）是浏览器对象模型，提供与浏览器交互的方法和接口。</p>
+<p>DOM（Document Object Model）是文档对象模型，处理网页内容的方法和接口。</p>
+<h3 id="onInput和onChange有何区别？"><a href="#onInput和onChange有何区别？" class="headerlink" title="onInput和onChange有何区别？"></a>onInput和onChange有何区别？</h3><p>onInput 事件是当输入变化时被触发的事件；</p>
+<p>onChange 事件是当输入的内容改变且失去焦点时被触发的事件；</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p><strong>说一下箭头函数和普通函数的区别</strong></p>
+<ol>
+<li>箭头函数没有自己的执行上下文，所以他的 this 指向的是他的父级；</li>
+<li>箭头函数不能当做构造函数，对其使用 new 关键字会报错；</li>
+<li>箭头函数不可以使用 arguments 对象，该对象在函数体内不存在；</li>
+<li>箭头函数不可使用 yield 命令；</li>
+</ol>
+<h3 id="监听对象"><a href="#监听对象" class="headerlink" title="监听对象"></a>监听对象</h3><p><strong>如何接听对象的属性变化？</strong></p>
+<p>使用<code>Object.defineProperty(obj, props)</code>方法，设置一个属性的 get 和 set 属性。</p>
+<p>举个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> obj<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span><span class="token string">'name'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+  <span class="token keyword">get</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token keyword">set</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    data<span class="token operator">=</span>newValue<span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'set :'</span><span class="token punctuation">,</span>newValue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//需要触发的渲染函数写在这...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>name<span class="token operator">=</span><span class="token string">"hello"</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 此时触发了set方法，会输出 hello</span>
+</code></pre>
+<p>当然还可以使用 ES6 新增的 Proxy</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token keyword">set</span><span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'set :'</span><span class="token punctuation">,</span>obj<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 输出 {} age 100</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> obj2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj2<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h3><p><strong>实现一个简易的双向绑定（MVVM）</strong></p>
+<p>双向绑定即 UI 能改变数据，数据也能反过来改变 UI，一个典型的例子就是 input 输入框</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>input<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 监听自定义数据的变化</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token string">'text'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token keyword">set</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    input<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 监听用户输入的变化</span>
+input<span class="token punctuation">.</span>onChange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  data<span class="token punctuation">.</span>text <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="空闲回调"><a href="#空闲回调" class="headerlink" title="空闲回调"></a>空闲回调</h3><p><strong>说一下 requestIdleCallback 和 requestAnimationFrame</strong></p>
+<p>requestIdleCallback：方法回调的执行的前提条件是当前浏览器处于空闲状态；</p>
+<p>requestAnimationFrame：每一帧都会调用一次回调方法；</p>
+<p>页面的内容都是一帧一帧绘制出来的，目前浏览器大多是 60Hz（60帧/s），每一帧耗时也就是在 16.6ms 左右。那么在这一帧的过程中浏览器又干了些什么呢？</p>
+<p><img src="/images/125.jpeg"></p>
+<p>通过上面这张图可以清楚的知道，浏览器一帧会经过下面这几个过程：</p>
+<ol>
+<li><p>接受输入事件</p>
+</li>
+<li><p>执行事件回调</p>
+</li>
+<li><p>开始一帧</p>
+</li>
+<li><p>执行 RAF (RequestAnimationFrame)</p>
+</li>
+<li><p>页面布局，样式计算</p>
+</li>
+<li><p>绘制渲染</p>
+</li>
+<li><p>执行 RIC (RequestIdelCallback)</p>
+<p>这一步不是每一帧结束都会执行，只有在一帧的 16.6ms 中做完了前面 6 件事儿且还有剩余时间，才会执行。如果一帧执行结束后还有时间执行 RIC 事件，那么下一帧需要在事件执行结束才能继续渲染，所以 RIC 执行不要超过 30ms，如果长时间不将控制权交还给浏览器，会影响下一帧的渲染，导致页面出现卡顿和事件响应不及时</p>
+</li>
+</ol>
+<h3 id="属性名表达式"><a href="#属性名表达式" class="headerlink" title="属性名表达式"></a>属性名表达式</h3><p><strong>说出下列代码打印的值</strong></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token punctuation">{</span>b<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  a<span class="token punctuation">:</span> <span class="token number">10</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">[</span>b<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>a<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>打印的结果是 20</p>
+<p>对于属性名表达式，如果键名是一个对象的话，那么会自动转成<code>[object Object]</code>字符串，所以最后 obj 对象的结构为<code>&#123;a:10,&#39;[object Object]&#39;:20&#125;</code>，而 a 也是对象，所以最后的结果是 20</p>
+<h2 id="React部分"><a href="#React部分" class="headerlink" title="React部分"></a>React部分</h2><h3 id="手写-useState"><a href="#手写-useState" class="headerlink" title="手写 useState"></a>手写 useState</h3><p>下面是 useState 的伪代码：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> memorizedState <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 存放 hooks</span>
+<span class="token keyword">let</span> cursor <span class="token operator">=</span> <span class="token number">0</span> <span class="token comment" spellcheck="true">// 在重新xuan'ran的时候需重置为 0</span>
+
+<span class="token keyword">function</span> <span class="token function">useState</span><span class="token punctuation">(</span>intialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    memorizedState<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">=</span> memeorizedState<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">||</span> initialState <span class="token comment" spellcheck="true">// 获取重新渲染之前的值，如果没有则使用默认值</span>
+    <span class="token keyword">const</span> currentCursor <span class="token operator">=</span> cursor<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 闭包会记住当前的cursor</span>
+    <span class="token keyword">function</span> <span class="token function">setState</span><span class="token punctuation">(</span>newState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        memorizedState<span class="token punctuation">[</span>currentCursor<span class="token punctuation">]</span> <span class="token operator">=</span> newState
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> <span class="token punctuation">[</span> memorizedState<span class="token punctuation">[</span>cursor<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">,</span> setState<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>这里存在 memorizedState 数组的原因是，一个页面里面可能存在多个 useState，在调用的时候通过 cursor 去获取当前的 state</p>
+<h2 id="CSS-部分"><a href="#CSS-部分" class="headerlink" title="CSS 部分"></a>CSS 部分</h2><h3 id="消除空隙"><a href="#消除空隙" class="headerlink" title="消除空隙"></a>消除空隙</h3><p>两个设置了<code>display:inline-block</code>的元素中间常常会有一段空隙，如何去消除这段空隙？</p>
+<p><strong>方案一：</strong></p>
+<p>空隙其实是代码中的空格或者换行符导致的，所以最快捷的方式是清除这些空格，除了手动删除空格外还可以通过编译时的压缩代码来实现。</p>
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+
+// 修改为
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+</code></pre>
+<p><strong>方案二：</strong></p>
+<p>既然将空格视作字符，那么设置他的父级的字体大小为0，那么空格就不占空间了。</p>
+<h3 id="高度自适应"><a href="#高度自适应" class="headerlink" title="高度自适应"></a>高度自适应</h3><p>一个高度自适应的 div 内有两个div，一个高度100px，希望另一个填满剩下的高度，有哪些方案？</p>
+<p><strong>方案一：</strong>使用计算属性</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.autoHeight</span></span><span class="token punctuation">{</span> <span class="token property">height</span><span class="token punctuation">:</span><span class="token function">calc</span><span class="token punctuation">(</span><span class="token number">100%</span> - <span class="token number">100</span>px<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>方案二：</strong>使用弹性布局</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span></span><span class="token punctuation">{</span> <span class="token property">display</span><span class="token punctuation">:</span>flex<span class="token punctuation">;</span> <span class="token property">flex-direction</span><span class="token punctuation">:</span>column <span class="token punctuation">}</span><span class="token selector">;
+<span class="token class">.autoHeight</span></span><span class="token punctuation">{</span> <span class="token property">flex</span><span class="token punctuation">:</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>方案三：</strong>使用绝对定位</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.container</span></span><span class="token punctuation">{</span> <span class="token property">position</span><span class="token punctuation">:</span>relative <span class="token punctuation">}</span><span class="token selector">;
+<span class="token class">.autoHeight</span></span><span class="token punctuation">{</span> <span class="token property">position</span><span class="token punctuation">:</span>absolute<span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span><span class="token number">100</span>px<span class="token punctuation">;</span> <span class="token property">bottom</span><span class="token punctuation">:</span><span class="token number">0</span> <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="浏览器部分"><a href="#浏览器部分" class="headerlink" title="浏览器部分"></a>浏览器部分</h2><h3 id="defer-amp-async"><a href="#defer-amp-async" class="headerlink" title="defer &amp; async"></a>defer &amp; async</h3><p><strong>解释一下 script 标签中 defer 和 async 的区别</strong></p>
+<p>首先来看一下没有加任何属性的 script 标签的加载和运行过程，绿色代表的是解析 HTML，灰色代表 HTML 解析暂停，蓝色代表加载脚本，红色代表运行脚本。</p>
+<p>可以看到默认模式下，如果遇到了脚本，会立即暂停后续 HTML 的解析并开始加载脚本，脚本加载完成之后立即运行。</p>
+<p><img src="/images/119.png" alt="defult"></p>
+<p>而添加了 async 属性后，脚本的加载不会暂停 HTML 的解析，且和默认模式下一样，加载完成后立即运行脚本，但是他不会按照代码的书写顺序来执行代码。</p>
+<p><img src="/images/120.png" alt="async"></p>
+<p>最后是添加了 defer 属性，他也是异步的，不会阻塞 HTML 的解析，且会在所有 HTML 解析完成之后再运行脚本。</p>
+<p><img src="/images/121.png" alt="defer"></p>
+<p>使用原则：</p>
+<ol>
+<li>如果当前脚本不依赖其他脚本，则使用 async；</li>
+<li>如果当前脚本依赖其他脚本或者被其他脚本依赖，则使用 defer；</li>
+<li>如果脚本较小且被其他脚本所以来，则不适用任何属性；</li>
+</ol>
+<p>除此之外还有设置了<code>type=&quot;module&quot;</code>属性的 script 标签，如下图所示：</p>
+<p><img src="/images/124.jpeg"></p>
+<h3 id="为什么说DOM操作耗时？"><a href="#为什么说DOM操作耗时？" class="headerlink" title="为什么说DOM操作耗时？"></a>为什么说DOM操作耗时？</h3><ol>
+<li><strong>线程切换：</strong>浏览器为了避免渲染引擎和 JS 引擎同时修改页面而造成渲染结果不一致的情况，要求同一时间只能运行一个引擎，引擎在切换的时候会占用时间；</li>
+<li><strong>重新渲染：</strong>如果在操作 DOM 时涉及到元素、样式的修改，会引起浏览器的重排和重绘；</li>
+</ol>
+<h3 id="如何判断页面已经加载完毕？"><a href="#如何判断页面已经加载完毕？" class="headerlink" title="如何判断页面已经加载完毕？"></a>如何判断页面已经加载完毕？</h3><ul>
+<li><p><code>window.onload</code> 事件触发代表页面中的 <code>DOM</code>、<code>CSS</code>、<code>JS</code>、图片已经全部加载完毕。</p>
+<pre class=" language-javascript"><code class="language-javascript">window<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p><code>DOMContentLoaded</code> 事件触发代表初始的 <code>HTML</code> 被完全加载和解析，不需要等待 <code>CSS</code>，<code>JS</code>，图片加载</p>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"DOMContentLoaded"</span><span class="token punctuation">,</span> ready<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="GET-amp-POST请求有什么区别？"><a href="#GET-amp-POST请求有什么区别？" class="headerlink" title="GET&amp;POST请求有什么区别？"></a>GET&amp;POST请求有什么区别？</h3><ol>
+<li>GET 请求在浏览器回退和刷新时是无害的，而 POST 请求会告知用户数据会被重新提交；</li>
+<li>GET 请求可以被缓存，POST 请求不可以被缓存，除非在响应头中包含合适的 Cache-Control/Expires 字段；</li>
+<li>GET 请求一般不具有请求体，因此只能进行 url 编码且有长度限制，而 POST 请求支持多种编码方式且无长度限制。</li>
+<li>GET 请求的安全性较差，数据被暴露在浏览器的URL中，POST请求的安全性较好，数据不会暴露在URL中；</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>面试 - 面试题汇总</p><p><a href="https://hashencode.github.io/bitebyte.github.io/post/47814/">https://hashencode.github.io/bitebyte.github.io/post/47814/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BiteByte</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-04-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/62036/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS基础 - 正则</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/326/"><span class="level-item">浏览器 - Cookie基础</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="BiteByte"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BiteByte</p><p class="is-size-6 is-block profile-author-title">FED , HangZhou</p></div></div></nav><nav class="level is-mobile" style="margin-bottom: 1.5rem"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title profile-count">52</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title profile-count">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Git</p><a target="_blank" href="https://github.com/hashencode"><i class="fab fa-github" style="font-size: 2rem;color: #363636;line-height: 1"></i></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#JS部分"><span class="level-left"><span class="level-item">1</span><span class="level-item">JS部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#原型题"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">原型题</span></span></a></li><li><a class="level is-mobile" href="#变量提升"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">变量提升</span></span></a></li><li><a class="level is-mobile" href="#隐式转换"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">隐式转换</span></span></a></li><li><a class="level is-mobile" href="#数组操作"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">数组操作</span></span></a></li><li><a class="level is-mobile" href="#for…in-of"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">for…in/of</span></span></a></li><li><a class="level is-mobile" href="#变量声明"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">变量声明</span></span></a></li><li><a class="level is-mobile" href="#JSON"><span class="level-left"><span class="level-item">1.7</span><span class="level-item">JSON</span></span></a></li><li><a class="level is-mobile" href="#Js-的内存机制"><span class="level-left"><span class="level-item">1.8</span><span class="level-item">Js 的内存机制</span></span></a></li><li><a class="level is-mobile" href="#链式调用"><span class="level-left"><span class="level-item">1.9</span><span class="level-item">链式调用</span></span></a></li><li><a class="level is-mobile" href="#逻辑与-或"><span class="level-left"><span class="level-item">1.10</span><span class="level-item">逻辑与/或</span></span></a></li><li><a class="level is-mobile" href="#BOM和DOM有和区别？"><span class="level-left"><span class="level-item">1.11</span><span class="level-item">BOM和DOM有和区别？</span></span></a></li><li><a class="level is-mobile" href="#onInput和onChange有何区别？"><span class="level-left"><span class="level-item">1.12</span><span class="level-item">onInput和onChange有何区别？</span></span></a></li><li><a class="level is-mobile" href="#箭头函数"><span class="level-left"><span class="level-item">1.13</span><span class="level-item">箭头函数</span></span></a></li><li><a class="level is-mobile" href="#监听对象"><span class="level-left"><span class="level-item">1.14</span><span class="level-item">监听对象</span></span></a></li><li><a class="level is-mobile" href="#双向绑定"><span class="level-left"><span class="level-item">1.15</span><span class="level-item">双向绑定</span></span></a></li><li><a class="level is-mobile" href="#空闲回调"><span class="level-left"><span class="level-item">1.16</span><span class="level-item">空闲回调</span></span></a></li><li><a class="level is-mobile" href="#属性名表达式"><span class="level-left"><span class="level-item">1.17</span><span class="level-item">属性名表达式</span></span></a></li></ul></li><li><a class="level is-mobile" href="#React部分"><span class="level-left"><span class="level-item">2</span><span class="level-item">React部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#手写-useState"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">手写 useState</span></span></a></li></ul></li><li><a class="level is-mobile" href="#CSS-部分"><span class="level-left"><span class="level-item">3</span><span class="level-item">CSS 部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#消除空隙"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">消除空隙</span></span></a></li><li><a class="level is-mobile" href="#高度自适应"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">高度自适应</span></span></a></li></ul></li><li><a class="level is-mobile" href="#浏览器部分"><span class="level-left"><span class="level-item">4</span><span class="level-item">浏览器部分</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#defer-amp-async"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">defer &amp; async</span></span></a></li><li><a class="level is-mobile" href="#为什么说DOM操作耗时？"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">为什么说DOM操作耗时？</span></span></a></li><li><a class="level is-mobile" href="#如何判断页面已经加载完毕？"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">如何判断页面已经加载完毕？</span></span></a></li><li><a class="level is-mobile" href="#GET-amp-POST请求有什么区别？"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">GET&amp;POST请求有什么区别？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CSS/"><span class="level-start"><span class="level-item">CSS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/categories/React/"><span class="level-start"><span class="level-item">React</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%96%87%E7%AB%A0/"><span class="level-start"><span class="level-item">文章</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a><p class="is-size-7"><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span><span style="margin:0 8px;">|</span><a href="https://beian.miit.gov.cn/" target="_blank">备案号: 浙ICP备19032437号-3</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hashencode"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

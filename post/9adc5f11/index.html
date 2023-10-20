@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>React Hook - 札记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="札记"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="札记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="React Hook 的基础知识"><meta property="og:type" content="blog"><meta property="og:title" content="React Hook"><meta property="og:url" content="https://hashencode.github.io/bitebyte.github.io/post/9adc5f11/"><meta property="og:site_name" content="札记"><meta property="og:description" content="React Hook 的基础知识"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hashencode.github.io/images/129.jpeg"><meta property="article:published_time" content="2020-08-08T01:22:48.000Z"><meta property="article:modified_time" content="2023-08-23T02:45:19.267Z"><meta property="article:author" content="BiteByte"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/129.jpeg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hashencode.github.io/bitebyte.github.io/post/9adc5f11/"},"headline":"札记","image":[],"datePublished":"2020-08-08T01:22:48.000Z","dateModified":"2023-08-23T02:45:19.267Z","author":{"@type":"Person","name":"BiteByte"},"description":"React Hook 的基础知识"}</script><link rel="canonical" href="https://hashencode.github.io/bitebyte.github.io/post/9adc5f11/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><meta name="google-site-verification" content="T7vkvAk0P1q3aljSms1CTcjEuusgc5fuZEXlVpqula4"><meta name="baidu-site-verification" content="code-yaxwed26ig"><meta name="sogou_site_verification" content="Zp4ZwuNJV3"><meta name="shenma-site-verification" content="dca2d80f9ad6bebcae0687cb36a512b8_1607603572"><meta name="360-site-verification" content="e4450cfd468cc5740855ff0297018c33"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand "><a class="navbar-item navbar-logo" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">React Hook</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-08T01:22:48.000Z" title="2020-08-08T01:22:48.000Z">2020-08-08</time>发表</span><span class="level-item"><time dateTime="2023-08-23T02:45:19.267Z" title="2023-08-23T02:45:19.267Z">2023-08-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/React/">React</a></span><span class="level-item">13 分钟读完 (大约1941个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>React Hook 的基础知识</p>
+<span id="more"></span>
+
+<h2 id="React-Hooks"><a href="#React-Hooks" class="headerlink" title="React Hooks"></a>React Hooks</h2><p>React Hook 是用来实现逻辑的复用的加强版的函数组件，使用 hook 实现逻辑复用可以避免使用 render props 和 高阶组件多次嵌套形成的“嵌套地狱”。</p>
+<p><strong>优点</strong></p>
+<ol>
+<li><p>React 高阶组件造成的嵌套地狱是指当使用多个高阶组件包装一个组件时，会产生很多层级的容器组件，导致代码可读性和维护性降低，例如，如果一个组件被这样包装：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">withSubscription</span><span class="token punctuation">(</span><span class="token function">withMouse</span><span class="token punctuation">(</span><span class="token function">withCat</span><span class="token punctuation">(</span>WrappedComponent<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>那么在 React Developer Tools 中，它的显示名称可能是这样的：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>WithSubscription</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>WithMouse</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>WithCat</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>WrappedComponent</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>WithCat</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>WithMouse</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>WithSubscription</span><span class="token punctuation">></span></span>
+</code></pre>
+</li>
+<li><p>类组件复用逻辑需要用到高阶函数，高阶函数是一个黑盒，外面的组件不知道内部的组件的逻辑，层层叠加之后，会给调试带来困难，而 hook 能够抽离逻辑到组件外部，很好的解决了这个问题；</p>
+</li>
+<li><p>类组件因为需要创建类组件的实例，所以对性能的开销较大，函数组件开销相对较小；</p>
+</li>
+<li><p>相较于也是复用逻辑的 HOC，每次调用高阶组件生成的都是是一个全新的组件，组件的唯一标识响应的也会改变，如果在render方法调用了高阶组件，这会导致组件每次都会被卸载后重新挂载。</p>
+</li>
+<li><p>函数组件不存在 state，但是 hook 弥补了这个缺点；</p>
+</li>
+</ol>
+<p><strong>限制</strong></p>
+<ol>
+<li><p>不要在循环、条件判断或嵌套函数中使用（或者说初始化） Hooks，例如：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">if</span><span class="token punctuation">(</span>exsit<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span>setName<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>因为 Hooks 是基于闭包实现，在调用时每个 hook 都按顺序加入链表结构中，并赋予相对应的 index，在更新状态时，会根据 index 去修改 state，如果使用循环、条件或嵌套函数很有可能导致数组取值错位，执行错误的 Hook。</p>
+</li>
+<li><p>只能在函数组件中使用 Hooks</p>
+</li>
+</ol>
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><p><strong>source 参数</strong></p>
+<p>useEffect 包含了 componentDidMount、componentDidUpdate、componentWillUnmount 三个生命周期，区别这三个生命周期主要是靠 source 参数：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'componentDidMount || componentDidUpdate'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'componentWillUnmount'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>当 source 没有值的时候，相当于 componentDidUpdate，每次更新都会被调用，且先调用 return 的函数，再调用外部的函数；</p>
+<p>当 source 为空数组时，外部函数相当于 componentDidMount，return 函数相当于 componentWillUnmount ；</p>
+<p>当 source 有值时，相当于 componentDidUpdate，但只会在 source 数组中的值变化时才会被调用，也是先调用 return 的函数，再调用外部的函数；</p>
+<p><strong>回调函数</strong></p>
+<p>useEffect 的回调函数，是对上一次调用 useEffect 进行清理，举个例子：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">HookTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行...'</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'清理...'</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>You clicked <span class="token punctuation">{</span>count<span class="token punctuation">}</span> times<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token function">setCount</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+        Click me
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// output:  </span>
+<span class="token comment" spellcheck="true">// 执行... 0</span>
+<span class="token comment" spellcheck="true">// 清理... 0 , 执行... 1</span>
+<span class="token comment" spellcheck="true">// 清理... 1 , 执行... 2</span>
+</code></pre>
+<p>可以看到，在发生 state 变动的时候，会先触发 return 内的函数，且 return 内的函数获取到的是之前的 state。</p>
+<p>那么再来看一下，useEffect 和渲染的执行顺序：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token function">HookTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'执行...'</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'清理...'</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>count<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`render </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>count<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>You clicked <span class="token punctuation">{</span>count<span class="token punctuation">}</span> times<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token function">setCount</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+        Click me
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// output:  </span>
+<span class="token comment" spellcheck="true">// render 0 , 执行... 0</span>
+<span class="token comment" spellcheck="true">// render 1 , 清理... 0 , 执行... 1</span>
+<span class="token comment" spellcheck="true">// render 2 , 清理... 1 , 执行... 2</span>
+</code></pre>
+<p>可以看到，render 要优先于 useEffect 触发。</p>
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>实现累加：将函数作为值传入，可以获取到上一次修改的 state，然后返回一个更新后的值：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">setTranslateY</span><span class="token punctuation">(</span>prevState <span class="token operator">=</span><span class="token operator">></span> prevState <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h2><p>useLayoutEffect 的作用和 useEffect 类似，写法上也类似：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 执行副作用</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* clean up */</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>dependency<span class="token punctuation">,</span> arr<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token function">useLayoutEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 执行副作用</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">/* clean up */</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>dependency<span class="token punctuation">,</span> array<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p>他们的不同点在于：</p>
+<p>useEffect 是在渲染函数执行完成，并绘制到屏幕之后，再异步执行。大概流程如下：</p>
+<ol>
+<li>触发渲染函数执行（改变状态，或者父组件重新渲染）</li>
+<li>React调用组件的渲染函数</li>
+<li>屏幕中重绘完成</li>
+<li>执行useEffect</li>
+</ol>
+<p>useLayoutEffect 是在渲染函数执行之后，但是屏幕重绘前同步执行。大概流程如下：</p>
+<ol>
+<li>触发渲染函数执行（改变状态，或者父组件重新渲染）</li>
+<li>React调用组件的渲染函数</li>
+<li>执行 useLayoutEffect，并且 React 会等待它执行完成</li>
+<li>屏幕中重绘完成</li>
+</ol>
+<h2 id="useId"><a href="#useId" class="headerlink" title="useId"></a>useId</h2><p>如果应用是 CSR（客户端渲染），id 是稳定的，不需要使用该 API，但如果应用是 SSR（服务端渲染），那么App.tsx 会经历：</p>
+<p>React 在服务端渲染，生成随机id（假设为0.1234），这一步叫 dehydrate（脱水）</p>
+<p>React 在客户端渲染，生成随机id（假设为0.6789），这一步叫 hydrate（注水）</p>
+<p>最后客户端、服务端生成的 id 会出现不匹配的情况，于是 React 18 中新增了 useId 来生成不变的 ID</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">Checkbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> id <span class="token operator">=</span> <span class="token function">useId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">htmlFor</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>id<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>Do you like React<span class="token operator">?</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>id<span class="token punctuation">}</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>react<span class="token punctuation">"</span>/</span><span class="token punctuation">></span></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>它的本质是通过组件在树中的层级计算出唯一ID，如下图所示</p>
+<p><img src="/images/129.jpeg"></p>
+<h2 id="useImperativeHandle"><a href="#useImperativeHandle" class="headerlink" title="useImperativeHandle"></a>useImperativeHandle</h2><p>useImperativeHandle 可以让你在使用 ref 时自定义暴露给父组件的实例值。useImperativeHandle 应当与 forwardRef 一起使用：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">// child.js</span>
+<span class="token keyword">function</span> <span class="token function">FancyInput</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> ref<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> inputRef <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">useImperativeHandle</span><span class="token punctuation">(</span>ref<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    focus<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      inputRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>inputRef<span class="token punctuation">}</span></span> <span class="token attr-name">...</span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+FancyInput <span class="token operator">=</span> <span class="token function">forwardRef</span><span class="token punctuation">(</span>FancyInput<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//parent.js</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FancyInput</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>inputRef<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+
+inputRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<h2 id="useTransition"><a href="#useTransition" class="headerlink" title="useTransition"></a>useTransition</h2><p>当函数被 startTransition 包裹时，函数 setState 触发的渲染就会被标记为不紧急渲染，有可能被其他的紧急渲染所挤占，举个例子：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>isPending<span class="token punctuation">,</span> startTransition<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useTransition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">function</span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">startTransition</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+      <span class="token function">setCount</span><span class="token punctuation">(</span>c <span class="token operator">=</span><span class="token operator">></span> c <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 此处为不紧急渲染，如果有文本输入等紧急渲染任务，此渲染会被推迟</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">{</span>isPending <span class="token operator">&amp;&amp;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Spinner</span> <span class="token punctuation">/></span></span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>handleClick<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="useDeferredValue"><a href="#useDeferredValue" class="headerlink" title="useDeferredValue"></a>useDeferredValue</h2><p>其作用于 useTransition 类似，不过 useTransition 是包装更新任务成为延迟更新任务，而 useDeferredValue 是产生一个新的值，将这个值延迟。</p>
+<p>useDeferredValue 仅延迟你传递给它的值。如果你想要在紧急更新期间防止子组件重新渲染，则还必须使用 React.memo 或 React.useMemo 记忆该子组件：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">Typeahead</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> query <span class="token operator">=</span> <span class="token function">useSearchQuery</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> deferredQuery <span class="token operator">=</span> <span class="token function">useDeferredValue</span><span class="token punctuation">(</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// Memoizing 告诉 React 仅当 deferredQuery 改变，</span>
+  <span class="token comment" spellcheck="true">// 而不是 query 改变的时候才重新渲染</span>
+  <span class="token keyword">const</span> suggestions <span class="token operator">=</span> <span class="token function">useMemo</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchSuggestions</span> <span class="token attr-name">query</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>deferredQuery<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span>deferredQuery<span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchInput</span> <span class="token attr-name">query</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>query<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Suspense</span> <span class="token attr-name">fallback</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Loading</span> <span class="token attr-name">results..."</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span>suggestions<span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Suspense</span><span class="token punctuation">></span></span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="自定义-Hook-实现逻辑复用"><a href="#自定义-Hook-实现逻辑复用" class="headerlink" title="自定义 Hook 实现逻辑复用"></a>自定义 Hook 实现逻辑复用</h2><p>自定义 hook 是 Hook 模式下实现 render props 或者高阶组件的方式，举个例子：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">// useSetOnlineState.jsx</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> useIsOnline <span class="token operator">=</span> <span class="token punctuation">(</span>userInfo<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>isOnline<span class="token punctuation">,</span>setIsOnline<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+        <span class="token function">setIsOnline</span><span class="token punctuation">(</span> useInfo<span class="token punctuation">.</span>state <span class="token operator">===</span> <span class="token string">'online'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> isOnline<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上例新建了一个 useIsOnline 的 hook，根据传入的 userInfo 来判断并设置内部状态 isOnline 并将其返回，下面是该 hook 的调用方式：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">UserList</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> isOnline <span class="token operator">=</span> <span class="token function">useIsOnline</span><span class="token punctuation">(</span> userItem<span class="token punctuation">.</span>userInfo <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span> <span class="token operator">...</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>自定义 hook 除了可以直接返回值外，还可以返回设置默认值、内部状态的方法，这样实现的 hook 使用方法与原生 useState 相同：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token comment" spellcheck="true">// useRandomColor.jsx</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> useRandomColor <span class="token operator">=</span> <span class="token punctuation">(</span>initialColor<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>color<span class="token punctuation">,</span>setColor<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span>initialColor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> changeColor <span class="token operator">=</span> <span class="token punctuation">(</span>currentColor<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+        <span class="token function">setColor</span><span class="token punctuation">(</span>currentColor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">return</span> <span class="token punctuation">[</span> color<span class="token punctuation">,</span>changeColor <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Hook-父组件调用子组件方法"><a href="#Hook-父组件调用子组件方法" class="headerlink" title="Hook 父组件调用子组件方法"></a>Hook 父组件调用子组件方法</h2><p>首先在父组件中引入子组件，并父给子组件一个 ref 对象：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> childrenRef <span class="token operator">=</span> <span class="token function">useRef</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>children</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>childrenRef<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+<p>然后修改子组件，给子组件套上<code>forwardRef</code>，然后使用<code>useImperativeHandle</code>暴露 ref 自定义的实例值给父组件：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">children</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> ref<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">useImperativeHandle</span><span class="token punctuation">(</span>ref<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+        hello<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'hello world!'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>children<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">forwardRef</span><span class="token punctuation">(</span>children<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>最后在父组件中调用：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> something <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> childrenRef<span class="token punctuation">.</span>current<span class="token punctuation">.</span><span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</div><div class="article-licensing box"><div class="licensing-title"><p>React Hook</p><p><a href="https://hashencode.github.io/bitebyte.github.io/post/9adc5f11/">https://hashencode.github.io/bitebyte.github.io/post/9adc5f11/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BiteByte</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-08-08</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/515414f9/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">React HOC 高阶组件</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/7b0f5557/"><span class="level-item">React Redux</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="BiteByte"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BiteByte</p><p class="is-size-6 is-block profile-author-title">FED , HangZhou</p></div></div></nav><nav class="level is-mobile" style="margin-bottom: 1.5rem"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title profile-count">52</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title profile-count">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Git</p><a target="_blank" href="https://github.com/hashencode"><i class="fab fa-github" style="font-size: 2rem;color: #363636;line-height: 1"></i></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#React-Hooks"><span class="level-left"><span class="level-item">1</span><span class="level-item">React Hooks</span></span></a></li><li><a class="level is-mobile" href="#useEffect"><span class="level-left"><span class="level-item">2</span><span class="level-item">useEffect</span></span></a></li><li><a class="level is-mobile" href="#useState"><span class="level-left"><span class="level-item">3</span><span class="level-item">useState</span></span></a></li><li><a class="level is-mobile" href="#useLayoutEffect"><span class="level-left"><span class="level-item">4</span><span class="level-item">useLayoutEffect</span></span></a></li><li><a class="level is-mobile" href="#useId"><span class="level-left"><span class="level-item">5</span><span class="level-item">useId</span></span></a></li><li><a class="level is-mobile" href="#useImperativeHandle"><span class="level-left"><span class="level-item">6</span><span class="level-item">useImperativeHandle</span></span></a></li><li><a class="level is-mobile" href="#useTransition"><span class="level-left"><span class="level-item">7</span><span class="level-item">useTransition</span></span></a></li><li><a class="level is-mobile" href="#useDeferredValue"><span class="level-left"><span class="level-item">8</span><span class="level-item">useDeferredValue</span></span></a></li><li><a class="level is-mobile" href="#自定义-Hook-实现逻辑复用"><span class="level-left"><span class="level-item">9</span><span class="level-item">自定义 Hook 实现逻辑复用</span></span></a></li><li><a class="level is-mobile" href="#Hook-父组件调用子组件方法"><span class="level-left"><span class="level-item">10</span><span class="level-item">Hook 父组件调用子组件方法</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CSS/"><span class="level-start"><span class="level-item">CSS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/categories/React/"><span class="level-start"><span class="level-item">React</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%96%87%E7%AB%A0/"><span class="level-start"><span class="level-item">文章</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a><p class="is-size-7"><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span><span style="margin:0 8px;">|</span><a href="https://beian.miit.gov.cn/" target="_blank">备案号: 浙ICP备19032437号-3</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hashencode"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JS基础 - 正则 - 札记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="札记"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="札记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="正则的语法及相关 API"><meta property="og:type" content="blog"><meta property="og:title" content="JS基础 - 正则"><meta property="og:url" content="https://hashencode.github.io/bitebyte.github.io/post/62036/"><meta property="og:site_name" content="札记"><meta property="og:description" content="正则的语法及相关 API"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hashencode.github.io/img/og_image.png"><meta property="article:published_time" content="2021-05-19T11:22:48.000Z"><meta property="article:modified_time" content="2023-08-23T02:45:19.266Z"><meta property="article:author" content="BiteByte"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hashencode.github.io/bitebyte.github.io/post/62036/"},"headline":"札记","image":["https://hashencode.github.io/img/og_image.png"],"datePublished":"2021-05-19T11:22:48.000Z","dateModified":"2023-08-23T02:45:19.266Z","author":{"@type":"Person","name":"BiteByte"},"description":"正则的语法及相关 API"}</script><link rel="canonical" href="https://hashencode.github.io/bitebyte.github.io/post/62036/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><meta name="google-site-verification" content="T7vkvAk0P1q3aljSms1CTcjEuusgc5fuZEXlVpqula4"><meta name="baidu-site-verification" content="code-yaxwed26ig"><meta name="sogou_site_verification" content="Zp4ZwuNJV3"><meta name="shenma-site-verification" content="dca2d80f9ad6bebcae0687cb36a512b8_1607603572"><meta name="360-site-verification" content="e4450cfd468cc5740855ff0297018c33"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand "><a class="navbar-item navbar-logo" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">JS基础 - 正则</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2021-05-19T11:22:48.000Z" title="2021-05-19T11:22:48.000Z">2021-05-19</time>发表</span><span class="level-item"><time dateTime="2023-08-23T02:45:19.266Z" title="2023-08-23T02:45:19.266Z">2023-08-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/JavaScript/">JavaScript</a></span><span class="level-item">11 分钟读完 (大约1644个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>正则的语法及相关 API</p>
+<span id="more"></span>
+
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建一个正则表达式对象有两种方式：</p>
+<ol>
+<li><p>使用 <code>new RegExp(&quot;pattern&quot;, &quot;flags&quot;)</code>，pattern 是模式，flags 是修饰符。</p>
+<p>例如：<code>new RegExp(&#39;name&#39;,&#39;g&#39;)</code></p>
+</li>
+<li><p>使用斜杠语法，这种写法的缺点是他不接受变量插入</p>
+<p>例如：<code>/name/g</code></p>
+</li>
+</ol>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><ul>
+<li><p><code>i</code>：不区分字母的大小写</p>
+</li>
+<li><p><code>g</code>：查找所有匹配项</p>
+</li>
+<li><p><code>m</code>：多行模式，只会对<code>^</code>和<code>$</code>造成影响</p>
+<p>举个例子：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token template-string"><span class="token string">`1st place: Winnie
+2nd place: Piglet
+33rd place: Eeyore`</span></span><span class="token punctuation">;</span>
+
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/^\d+/g</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 1</span>
+</code></pre>
+<p>此时并没有输出所有数字，即使 Winnie 后的字符串进行了换行，但依然将其视作一行字符串，将正则改写成<code>/^\d+/gm</code>就可以正常输出结果</p>
+</li>
+<li><p><code>u</code>：打开 unicode 支持（在 firefox 和 edge 中使用会有 bug）</p>
+</li>
+<li><p><code>y</code>：粘滞模式</p>
+</li>
+</ul>
+<h2 id="相关API"><a href="#相关API" class="headerlink" title="相关API"></a>相关API</h2><h3 id="regexp-test-str"><a href="#regexp-test-str" class="headerlink" title="regexp.test(str)"></a>regexp.test(str)</h3><p>用途：判断正则表达式与指定字符串是否匹配。</p>
+<p>如果找到匹配项返回<code>true</code>，没有找到则返回<code>false</code></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token regex">/\d/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// output: true</span>
+</code></pre>
+<h3 id="regexp-exec-str"><a href="#regexp-exec-str" class="headerlink" title="regexp.exec(str)"></a>regexp.exec(str)</h3><p>用途：在字符串中找到匹配的字符。</p>
+<p>如果没有找到匹配的字符，则返回<code>null</code></p>
+<p>在调用<code>exec</code>方法时，如果正则为全局匹配时，其返回的结果跟<code>match</code>方法非全局匹配下的结果一致，不过<code>exec</code>会维护一个<code>lastIndex</code>属性，当匹配到字符串时，会将<code>lastIndex</code>属性设置为当前匹配项的结束的位置：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\d/g</span><span class="token punctuation">;</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// output:</span>
+<span class="token comment" spellcheck="true">// 0: "1"</span>
+<span class="token comment" spellcheck="true">// groups: undefined</span>
+<span class="token comment" spellcheck="true">// index: 0</span>
+<span class="token comment" spellcheck="true">// input: "123"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 1 </span>
+
+<span class="token comment" spellcheck="true">// 再次执行</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// output:</span>
+<span class="token comment" spellcheck="true">// 0: "2"</span>
+<span class="token comment" spellcheck="true">// groups: undefined</span>
+<span class="token comment" spellcheck="true">// index: 1</span>
+<span class="token comment" spellcheck="true">// input: "123"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 2</span>
+</code></pre>
+<p>如果正则不是全局匹配，则会每一次都将 lastIndex 重置为 0 ，并重头开始查找：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\d/</span><span class="token punctuation">;</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 1 </span>
+
+<span class="token comment" spellcheck="true">// 再次执行</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 1</span>
+</code></pre>
+<p>如果在不使用全局匹配的情况向下，依然要记住上一次的 lastIndex，可以使用<code>y</code>修饰符：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> reg <span class="token operator">=</span> <span class="token regex">/\d/y</span><span class="token punctuation">;</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 1 </span>
+
+<span class="token comment" spellcheck="true">// 再次执行</span>
+reg<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>reg<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: 2</span>
+</code></pre>
+<h3 id="str-search-regexp"><a href="#str-search-regexp" class="headerlink" title="str.search(regexp)"></a>str.search(regexp)</h3><p>用途：搜索一个匹配字符，返回<strong>首次</strong>匹配到的索引，如果没有找到匹配字符，则返回<code>-1</code></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token regex">/\d/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'123'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// output: 0</span>
+</code></pre>
+<h3 id="str-match-regexp"><a href="#str-match-regexp" class="headerlink" title="str.match(regexp)"></a>str.match(regexp)</h3><p>用途：在字符串中找到匹配的字符。</p>
+<p>如果没有找到匹配的字符，则返回<code>null</code></p>
+<p>如果正则还有全局搜索标记<code>g</code>，则会返回匹配倒的字符的数组：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"name=nick; first_name=john"</span>
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/name=([^;]{0,})/g</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">// output: ["name=nick", "name=john"]</span>
+</code></pre>
+<p>如果不含标记<code>g</code>，则会返回第一个匹配项，包含其详细信息，第一项是完全匹配的内容，后几项是与捕获括号相对应的匹配字符串</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"name=nick; first_name=john"</span>
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/name=([^;]{0,})/</span><span class="token punctuation">)</span> 
+<span class="token comment" spellcheck="true">// output: </span>
+<span class="token comment" spellcheck="true">// 0: "name=nick"</span>
+<span class="token comment" spellcheck="true">// 1: "nick"</span>
+<span class="token comment" spellcheck="true">// groups: undefined</span>
+<span class="token comment" spellcheck="true">// index: 0</span>
+<span class="token comment" spellcheck="true">// input: "name=nick; first_name=john"</span>
+</code></pre>
+<p>如果使用 index 来获取匹配项不方便，可以对捕获括号进行进行命名，在捕获括号后跟上<code>?&lt;name&gt;</code>即可对组进行命名（要注意的是IE11不支持组命名）：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"name=nick; first_name=john"</span>
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex">/name=(?&lt;name>[^;]{0,})/</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// output:</span>
+<span class="token comment" spellcheck="true">// 0: "name=nick"</span>
+<span class="token comment" spellcheck="true">// 1: "nick"</span>
+<span class="token comment" spellcheck="true">// groups: {name: "nick"}</span>
+<span class="token comment" spellcheck="true">// index: 0</span>
+<span class="token comment" spellcheck="true">// input: "name=nick; first_name=john"</span>
+</code></pre>
+<h3 id="str-replace-regexp-replacement"><a href="#str-replace-regexp-replacement" class="headerlink" title="str.replace(regexp, replacement)"></a>str.replace(regexp, replacement)</h3><p>用途：在字符串中找到匹配的字符并使用新字符进行替换（生成新字符串，不会修改原字符串）。</p>
+<p>有两种方式可以实现替换</p>
+<p>一种方式是使用<code>$n</code>的方式对捕获组内的字符串进行替换：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"nick john"</span><span class="token punctuation">;</span>
+str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/(\w+) (\w+)/</span><span class="token punctuation">,</span> <span class="token string">'$2, $1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: john,nick</span>
+</code></pre>
+<p>另一种方式是通过组名来替换，引用方式为<code>$&lt;name&gt;</code>：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">"nick john"</span><span class="token punctuation">;</span>
+str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex">/(?&lt;first>\w+) (?&lt;second>\w+)/</span><span class="token punctuation">,</span> <span class="token string">'$&lt;second>, $&lt;first>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// output: john,nick</span>
+</code></pre>
+<h2 id="正则符号"><a href="#正则符号" class="headerlink" title="正则符号"></a>正则符号</h2><table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\ <div style="width:6rem"/></td>
+<td>转译字符<br />常用转译：<br /><code>\d</code>：匹配一个数字，等价于<code>[0-9]</code><br /><code>\D</code>：匹配一个非数字，等价于<code>[^0-9]</code><br /><code>\n</code>：匹配一个换行符<br /><code>\r</code>：匹配一个回车符<br /><code>\s</code>：匹配一个空白字符<br /><code>\S</code>：<code>\s</code>取反<br /><code>\w</code>：匹配一个单字字符（字母数字或者下划线，等价于<code>[A-Za-z0-9_]</code>）<br /><code>\W</code>：<code>\w</code>取反</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配输入的开始，当<code>^</code>出现在一个字符合集内时表示取反</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配输入的结尾</td>
+</tr>
+<tr>
+<td>|</td>
+<td>或</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配前一个表达式的0次或多次，等价于<code>&#123;0,&#125;</code></td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前一个表达式的1次或多次，等价于<code>&#123;1,&#125;</code></td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配前一个表达式的0次或1次，等价于<code>&#123;0,1&#125;</code>，正则默认是贪婪模式，即尽可能多的匹配，加上问号后就变成了非贪婪模式</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配换行符以外的所有<strong>单个</strong>字符</td>
+</tr>
+<tr>
+<td>(x)</td>
+<td>捕获括号，记住匹配项，它表示一个区块，例如<code>/foo&#123;1,2&#125;/</code>中<code>&#123;1,2&#125;</code>匹配的是字母<code>o</code>，而<code>/(?:foo)&#123;1,2&#125;/</code>匹配的是整个单词<code>foo</code></td>
+</tr>
+<tr>
+<td>(?:x)</td>
+<td>非捕获括号，不记住匹配项，匹配项不会出现在 match 方法的结果数组中</td>
+</tr>
+<tr>
+<td>x(?=y)</td>
+<td>先行断言，<code>foo(?=abc)</code>表示当 foo 后面跟着 abc 时才会才会匹配 foo</td>
+</tr>
+<tr>
+<td>(?&lt;=y)x</td>
+<td>后行断言，<code>(?&lt;=abc)foo</code>表示当 foo 的前面是 abc 时才会匹配 foo<br /><strong>注意：</strong>IE 和 safari 并不支持（<a target="_blank" rel="noopener" href="https://caniuse.com/js-regexp-lookbehind">兼容性</a>）</td>
+</tr>
+<tr>
+<td>x(?!y)</td>
+<td>正向否定查找，<code>foo(?!abc)</code>仅当 x 后面不跟着 abc 时才会匹配 foo</td>
+</tr>
+<tr>
+<td>(?!y)x</td>
+<td>反向否定查找，<code>(?!abc)foo</code>仅当 x 前面不跟着 abc 时才会匹配 foo</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>匹配次数，<code>&#123;n&#125;</code>表示前面单个字符出现了 n 次，<code>&#123;n,&#125;</code>表示前面单个字符至少出现了 n 次，<code>&#123;n,m&#125;</code>表示前面单个字符出现次数大于等于 n，小于等于 m</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>字符合集，匹配方括号中的<strong>单个任意字符</strong>，其内的特殊字符不需要转义<br />若用<code>-</code>分割，则表示一个范围，<code>/[abcd]/</code>和<code>/[a-d]/</code>是一样的<br />例如：<code>/V[oi]la/</code>能够匹配<code>Vola</code>或者<code>Vila</code>，单不能匹配<code>Voila</code></td>
+</tr>
+<tr>
+<td>[^]</td>
+<td>反向字符集，<code>[^a-d]</code>表示匹配不含 a 到 d 的字母的字符</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>边界，类似于<code>^</code>和<code>$</code>，当遇到<code>\b</code>时会检查字符串位置是否处于边界<br /><code>/\bJava\b/</code>表示匹配 Java 字符串，且两遍的字符不属于<code>\w</code>，<code>Hello,Java</code>能够匹配，但<code>Hello,Javascript</code>无法匹配<br /><code>\B</code>表示非边界值</td>
+</tr>
+</tbody></table>
+<h2 id="常用正则"><a href="#常用正则" class="headerlink" title="常用正则"></a>常用正则</h2><p>手机号正则</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token regex">/^1[3-9]\d{9}$/</span>
+</code></pre>
+<p>身份证正则</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token regex">/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/</span>
+</code></pre>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JS基础 - 正则</p><p><a href="https://hashencode.github.io/bitebyte.github.io/post/62036/">https://hashencode.github.io/bitebyte.github.io/post/62036/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BiteByte</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2021-05-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/55257/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS基础 - Object 对象</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/47814/"><span class="level-item">面试 - 面试题汇总</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="BiteByte"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BiteByte</p><p class="is-size-6 is-block profile-author-title">FED , HangZhou</p></div></div></nav><nav class="level is-mobile" style="margin-bottom: 1.5rem"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title profile-count">52</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title profile-count">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Git</p><a target="_blank" href="https://github.com/hashencode"><i class="fab fa-github" style="font-size: 2rem;color: #363636;line-height: 1"></i></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#语法"><span class="level-left"><span class="level-item">1</span><span class="level-item">语法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#创建"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">创建</span></span></a></li><li><a class="level is-mobile" href="#修饰符"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">修饰符</span></span></a></li></ul></li><li><a class="level is-mobile" href="#相关API"><span class="level-left"><span class="level-item">2</span><span class="level-item">相关API</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#regexp-test-str"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">regexp.test(str)</span></span></a></li><li><a class="level is-mobile" href="#regexp-exec-str"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">regexp.exec(str)</span></span></a></li><li><a class="level is-mobile" href="#str-search-regexp"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">str.search(regexp)</span></span></a></li><li><a class="level is-mobile" href="#str-match-regexp"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">str.match(regexp)</span></span></a></li><li><a class="level is-mobile" href="#str-replace-regexp-replacement"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">str.replace(regexp, replacement)</span></span></a></li></ul></li><li><a class="level is-mobile" href="#正则符号"><span class="level-left"><span class="level-item">3</span><span class="level-item">正则符号</span></span></a></li><li><a class="level is-mobile" href="#常用正则"><span class="level-left"><span class="level-item">4</span><span class="level-item">常用正则</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CSS/"><span class="level-start"><span class="level-item">CSS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/categories/React/"><span class="level-start"><span class="level-item">React</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%96%87%E7%AB%A0/"><span class="level-start"><span class="level-item">文章</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a><p class="is-size-7"><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span><span style="margin:0 8px;">|</span><a href="https://beian.miit.gov.cn/" target="_blank">备案号: 浙ICP备19032437号-3</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hashencode"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

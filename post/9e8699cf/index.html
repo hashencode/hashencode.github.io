@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JS进阶 - reflow &amp; repaint 的性能优化 - 札记</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="札记"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="札记"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="页面的渲染过程及优化渲染方式"><meta property="og:type" content="blog"><meta property="og:title" content="JS进阶 - reflow &amp; repaint 的性能优化"><meta property="og:url" content="https://hashencode.github.io/bitebyte.github.io/post/9e8699cf/"><meta property="og:site_name" content="札记"><meta property="og:description" content="页面的渲染过程及优化渲染方式"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://hashencode.github.io/images/55.jpg"><meta property="article:published_time" content="2020-08-08T01:22:48.000Z"><meta property="article:modified_time" content="2023-08-23T02:45:19.266Z"><meta property="article:author" content="BiteByte"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/images/55.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://hashencode.github.io/bitebyte.github.io/post/9e8699cf/"},"headline":"札记","image":["https://hashencode.github.io/images/55.jpg"],"datePublished":"2020-08-08T01:22:48.000Z","dateModified":"2023-08-23T02:45:19.266Z","author":{"@type":"Person","name":"BiteByte"},"description":"页面的渲染过程及优化渲染方式"}</script><link rel="canonical" href="https://hashencode.github.io/bitebyte.github.io/post/9e8699cf/"><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><meta name="google-site-verification" content="T7vkvAk0P1q3aljSms1CTcjEuusgc5fuZEXlVpqula4"><meta name="baidu-site-verification" content="code-yaxwed26ig"><meta name="sogou_site_verification" content="Zp4ZwuNJV3"><meta name="shenma-site-verification" content="dca2d80f9ad6bebcae0687cb36a512b8_1607603572"><meta name="360-site-verification" content="e4450cfd468cc5740855ff0297018c33"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand "><a class="navbar-item navbar-logo" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a></div><div class="navbar-menu"><div class="navbar-end"><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-3 is-size-4-mobile">JS进阶 - reflow &amp; repaint 的性能优化</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-08-08T01:22:48.000Z" title="2020-08-08T01:22:48.000Z">2020-08-08</time>发表</span><span class="level-item"><time dateTime="2023-08-23T02:45:19.266Z" title="2023-08-23T02:45:19.266Z">2023-08-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/JavaScript/">JavaScript</a></span><span class="level-item">9 分钟读完 (大约1306个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><p>页面的渲染过程及优化渲染方式</p>
+<span id="more"></span>
+
+<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><p>目前的 Chrome 浏览器为多进程多线程架构，包括 Browser进程、Renderer进程、GPU进程。</p>
+<ul>
+<li><p>浏览器主进程：负责浏览器界面的显示、各个页面的管理。每次我们打开浏览器，都会启动一个主进程，结束该进程就会关闭我们的浏览器。主进程和渲染进程是分离的，这样可以保证页面的崩溃不会导致浏览器的崩溃。</p>
+</li>
+<li><p>渲染进程：这是网页的渲染进程，负责页面的渲染工作，一般来说，一个页面都会对应一个渲染进程，各自互相独立互不影响。</p>
+</li>
+<li><p>GPU 进程：如果页面启动了硬件加速，浏览器就会开启一个 GPU 进程，但是最多只能有一个，当且仅当 GPU 硬件加速打开的时候才会被创建。</p>
+</li>
+</ul>
+<p>每个进程都是多线程的，其目的是保持用户界面的高响应度，保证 UI 线程不会被其他操作阻碍从而影响了对用户操作的响应，例如 JS 脚本的解析执行都是在独立的线程中运行的。</p>
+<h2 id="页面渲染过程"><a href="#页面渲染过程" class="headerlink" title="页面渲染过程"></a>页面渲染过程</h2><p>页面从输入 URL 到页面渲染完成，主要经历了这几个阶段：</p>
+<ol>
+<li>DNS 解析</li>
+<li>建立 TCP 连接</li>
+<li>发送 HTTP 请求</li>
+<li>渲染页面</li>
+<li>断开连接</li>
+</ol>
+<h3 id="DNS-解析"><a href="#DNS-解析" class="headerlink" title="DNS 解析"></a>DNS 解析</h3><p>DNS 解析的顺序依次为：</p>
+<ul>
+<li>浏览器的 DNS 缓存，chrome 的缓存有效期为 60s，safari 有效期大概 10 多秒</li>
+<li>系统缓存：hosts 文件设置的映射关系</li>
+<li>路由器缓存</li>
+<li>ISP（互联网服务提供商）服务器缓存</li>
+<li>根域名服务器缓存（保存着 顶级域名服务器 的ip地址）</li>
+<li>顶级域名服务器缓存（例如 .com 域名服务器，保存着 主域名服务器 的ip地址）</li>
+<li>主域名服务器缓存（例如 google.com 域名服务器）</li>
+</ul>
+<h3 id="渲染页面"><a href="#渲染页面" class="headerlink" title="渲染页面"></a>渲染页面</h3><p>浏览器的渲染过程如下图所示：</p>
+<ol>
+<li>解析 HTML，生成 DOM 树，解析 CSS，生成 CSS 规则；</li>
+<li>将 DOM 树和 CSS 规则结合，生成渲染树；</li>
+<li>根据生成的渲染树进行重排（reflow），得到节点的几何信息；</li>
+<li>根据重排获得的数据进行重绘（repaint）；</li>
+<li>将像素发送给 GPU 进行展示；</li>
+</ol>
+<p><img src="/images/55.jpg"></p>
+<h2 id="reflow-重排"><a href="#reflow-重排" class="headerlink" title="reflow 重排"></a>reflow 重排</h2><p>重排指的是浏览器重新计算文档中元素的几何信息（位置和大小）的过程。当一个元素发生重排时，他的父元素和子元素都可能发生重排。</p>
+<p>常见的会导致重排情况：</p>
+<ul>
+<li>调整浏览器窗口大小</li>
+<li>增加或移出样式表</li>
+<li>内容发生变化</li>
+<li>改变字体</li>
+<li>Js 操作 DOM</li>
+<li>修改 <code>style</code> 属性的值</li>
+<li>读取 <code>offset</code>、<code>client</code>、<code>scroll</code>属性或调用<code>getComputedStyle()</code>、<code>getBoundingClientRect()</code>方法</li>
+<li>CSS 伪类激活，例如 <code>:hover</code></li>
+</ul>
+<h2 id="repaint-重绘"><a href="#repaint-重绘" class="headerlink" title="repaint 重绘"></a>repaint 重绘</h2><p>当元素的样式更新时就会触发重绘，当发生 reflow 时，必定触发 repaint。</p>
+<p>具体什么属性会触发 reflow 和 repaint 见 <a target="_blank" rel="noopener" href="https://csstriggers.com/">csstriggers</a></p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="避免触发同步布局事件："><a href="#避免触发同步布局事件：" class="headerlink" title="避免触发同步布局事件："></a>避免触发同步布局事件：</h3><p>浏览器为了防止多次重排操作引发假死，会通过队列化修改并批量执行来优化重排的过程，但如果调用 <code>offsetTop</code> 等属性时，浏览器为了获取到真实的值，会强制队列刷新并立即重排， 所以避免使用以下属性或方法：</p>
+<ul>
+<li><p>offsetTop/Left/Widt/Height</p>
+</li>
+<li><p>scrollTop/Left/Width/Height</p>
+</li>
+<li><p>clientTop/Left/Width/Height</p>
+</li>
+<li><p>getComputedStyle()</p>
+</li>
+<li><p>getBoundingClientRect()</p>
+</li>
+</ul>
+<p>如果必须使用这些属性，可以将属性值缓存起来：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> width <span class="token operator">=</span> box<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">initP</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> paragraphs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        paragraphs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> width <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="合并DOM操作"><a href="#合并DOM操作" class="headerlink" title="合并DOM操作"></a>合并DOM操作</h3><p>优化重排和重绘最好的方式就是减少他们的发生次数，为此可以将多次DOM操作合并为1次：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+el<span class="token punctuation">.</span>style<span class="token punctuation">.</span>padding <span class="token operator">=</span> <span class="token string">'5px'</span><span class="token punctuation">;</span>
+el<span class="token punctuation">.</span>style<span class="token punctuation">.</span>borderLeft <span class="token operator">=</span> <span class="token string">'1px'</span><span class="token punctuation">;</span>
+el<span class="token punctuation">.</span>style<span class="token punctuation">.</span>borderRight <span class="token operator">=</span> <span class="token string">'2px'</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 3次分离的修改触发了3次重排</span>
+</code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 使用cssText或class来合并修改</span>
+<span class="token keyword">const</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+el<span class="token punctuation">.</span>style<span class="token punctuation">.</span>cssText <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">'border-left: 1px; border-right: 2px; padding: 5px;'</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// or</span>
+el<span class="token punctuation">.</span>className <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">' active'</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="离线DOM操作"><a href="#离线DOM操作" class="headerlink" title="离线DOM操作"></a>离线DOM操作</h3><p>如果DOM操作无法合并，可以先将DOM脱离文档流，修改完成后再带回文档中，离线DOM主要有三种方式：</p>
+<ol>
+<li><p>使用 display:none（两次回流和重绘）</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">appendDataToElement</span><span class="token punctuation">(</span>appendToElement<span class="token punctuation">,</span> data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> li<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> data<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        li <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        li<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'text'</span><span class="token punctuation">;</span>
+        appendToElement<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>li<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'list'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ul<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+<span class="token function">appendDataToElement</span><span class="token punctuation">(</span>ul<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ul<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'block'</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>使用 DocumentFragment 进行缓存操作（一次回流和重绘）</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'list'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> fragment <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createDocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">appendDataToElement</span><span class="token punctuation">(</span>fragment<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ul<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>fragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>使用 cloneNode 和 replaceChild（一次回流和重绘）</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> ul <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'list'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> clone <span class="token operator">=</span> ul<span class="token punctuation">.</span><span class="token function">cloneNode</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">appendDataToElement</span><span class="token punctuation">(</span>clone<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ul<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">replaceChild</span><span class="token punctuation">(</span>clone<span class="token punctuation">,</span> ul<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ol>
+<h3 id="使用CSS硬件加速"><a href="#使用CSS硬件加速" class="headerlink" title="使用CSS硬件加速"></a>使用CSS硬件加速</h3><p>使用css3硬件加速，transform、opacity、filters等动画不会引起回流重绘</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JS进阶 - reflow &amp; repaint 的性能优化</p><p><a href="https://hashencode.github.io/bitebyte.github.io/post/9e8699cf/">https://hashencode.github.io/bitebyte.github.io/post/9e8699cf/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>BiteByte</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-08-08</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-08-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/post/1f8b3fc3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS基础 - 判断数据类型</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/post/d98ef1d2/"><span class="level-item">两数之和</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="BiteByte"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">BiteByte</p><p class="is-size-6 is-block profile-author-title">FED , HangZhou</p></div></div></nav><nav class="level is-mobile" style="margin-bottom: 1.5rem"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title profile-count">52</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title profile-count">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Git</p><a target="_blank" href="https://github.com/hashencode"><i class="fab fa-github" style="font-size: 2rem;color: #363636;line-height: 1"></i></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#浏览器内核"><span class="level-left"><span class="level-item">1</span><span class="level-item">浏览器内核</span></span></a></li><li><a class="level is-mobile" href="#页面渲染过程"><span class="level-left"><span class="level-item">2</span><span class="level-item">页面渲染过程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#DNS-解析"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">DNS 解析</span></span></a></li><li><a class="level is-mobile" href="#渲染页面"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">渲染页面</span></span></a></li></ul></li><li><a class="level is-mobile" href="#reflow-重排"><span class="level-left"><span class="level-item">3</span><span class="level-item">reflow 重排</span></span></a></li><li><a class="level is-mobile" href="#repaint-重绘"><span class="level-left"><span class="level-item">4</span><span class="level-item">repaint 重绘</span></span></a></li><li><a class="level is-mobile" href="#优化"><span class="level-left"><span class="level-item">5</span><span class="level-item">优化</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#避免触发同步布局事件："><span class="level-left"><span class="level-item">5.1</span><span class="level-item">避免触发同步布局事件：</span></span></a></li><li><a class="level is-mobile" href="#合并DOM操作"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">合并DOM操作</span></span></a></li><li><a class="level is-mobile" href="#离线DOM操作"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">离线DOM操作</span></span></a></li><li><a class="level is-mobile" href="#使用CSS硬件加速"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">使用CSS硬件加速</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/CSS/"><span class="level-start"><span class="level-item">CSS</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/categories/JavaScript/"><span class="level-start"><span class="level-item">JavaScript</span></span><span class="level-end"><span class="level-item tag">23</span></span></a></li><li><a class="level is-mobile" href="/categories/React/"><span class="level-start"><span class="level-item">React</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E6%96%87%E7%AB%A0/"><span class="level-start"><span class="level-item">文章</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AE%97%E6%B3%95/"><span class="level-start"><span class="level-item">算法</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/og_image.png" alt="札记" height="28"></a><p class="is-size-7"><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span><span style="margin:0 8px;">|</span><a href="https://beian.miit.gov.cn/" target="_blank">备案号: 浙ICP备19032437号-3</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/hashencode"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
