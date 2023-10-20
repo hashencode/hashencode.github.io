@@ -1,7 +1,7 @@
 /* eslint-disable node/no-unsupported-features/node-builtins */
 (function ($, moment, ClipboardJS, config) {
   if (!/localhost/.test(document.domain)) {
-    if (!/^www/.test(document.domain)) {
+    if (!/^www\.bitebyte/.test(document.domain)) {
       window.location.href = window.location.href.replace(
         /(http|https):\/\//,
         "$1://www."
